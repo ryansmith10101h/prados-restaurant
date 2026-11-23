@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-charcoal-950 text-cream-200 font-body;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid #c9a84c;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(201, 168, 76, 0.3);
+    color: #f5f0e8;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0d0d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #383838;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9a84c;
+  }
+}
+
+@layer components {
+  /* Typography */
+  .display-xl {
+    @apply font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.9] tracking-tight;
+  }
+  .display-lg {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight;
+  }
+  .display-md {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight;
+  }
+  .display-sm {
+    @apply font-display text-2xl md:text-3xl leading-tight;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply font-body text-xs font-semibold tracking-[0.2em] uppercase text-gold-500;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold-500 text-charcoal-900 font-semibold text-sm tracking-wide uppercase transition-all duration-300 hover:bg-gold-400 active:bg-gold-600 focus-visible:outline-gold-500;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 border border-cream-200/40 text-cream-200 font-semibold text-sm tracking-wide uppercase transition-all duration-300 hover:border-cream-200 hover:bg-cream-200/5 active:bg-cream-200/10;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-cream-300 font-medium text-sm transition-all duration-300 hover:text-cream-100 hover:underline underline-offset-4;
+  }
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 border border-gold-500 text-gold-500 font-semibold text-sm tracking-wide uppercase transition-all duration-300 hover:bg-gold-500 hover:text-charcoal-900;
+  }
+
+  /* Section containers */
+  .section-pad {
+    @apply py-20 md:py-28 lg:py-36;
+  }
+  .section-pad-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  .container-site {
+    @apply mx-auto px-5 sm:px-8 md:px-12 lg:px-16 max-w-[1400px];
+  }
+
+  /* Divider */
+  .divider-gold {
+    @apply w-12 h-px bg-gold-500;
+  }
+
+  /* Form inputs */
+  .input-field {
+    @apply w-full bg-charcoal-800 border border-charcoal-600 text-cream-200 placeholder:text-charcoal-400 px-4 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors duration-200;
+  }
+  .label-field {
+    @apply block text-xs font-medium tracking-wider uppercase text-cream-400 mb-2;
+  }
+
+  /* Cards */
+  .card-dark {
+    @apply bg-charcoal-800 border border-charcoal-700;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 to-gold-600 bg-clip-text text-transparent;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
