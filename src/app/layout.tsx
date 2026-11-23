@@ -4,7 +4,7 @@ import { BUSINESS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://pradosrestaurant.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://prados-restaurant.vercel.app"
   ),
   title: {
     default: BUSINESS.seo.title,
@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://pradosrestaurant.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://prados-restaurant.vercel.app",
     siteName: "Prados Restaurant & Bar",
     title: BUSINESS.seo.title,
     description: BUSINESS.seo.description,
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
         width: 1200,
         height: 630,
         alt: "Prados Restaurant & Bar — Magodo Phase 2, Lagos",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: BUSINESS.seo.title,
     description: BUSINESS.seo.description,
-    images: ["/og-image.jpg"],
+    images: ["https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80"],
   },
   robots: {
     index: true,
@@ -47,15 +47,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "", // Add Google Search Console verification code
-  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1a1a1a",
+  themeColor: "#0b0b0b",
 };
 
 export default function RootLayout({
@@ -76,7 +73,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>{children}</body>
     </html>

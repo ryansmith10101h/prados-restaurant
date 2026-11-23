@@ -7,46 +7,88 @@ import EventsSection from "@/components/sections/EventsSection";
 import LocationContactSection from "@/components/sections/LocationContactSection";
 import FinalCtaSection from "@/components/sections/FinalCtaSection";
 import { BUSINESS } from "@/lib/constants";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Prados Restaurant & Bar | Contemporary Nigerian Dining & Cocktails in Magodo Phase 2, Lagos",
+  description:
+    "Experience contemporary Nigerian cuisine, charcoal grills, artisanal cocktails, and live entertainment at Prados Restaurant & Bar, 51 Alh. Bashorun Shittu Avenue, Magodo Phase 2, Lagos.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function HomePage() {
-  // Structured Schema.org data for Restaurant & LocalBusiness
+  const siteUrl = BUSINESS.seo.siteUrl;
+
+  // Complete Schema.org JSON-LD representing Restaurant, BarOrPub, and LocalBusiness
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["Restaurant", "BarOrPub", "LocalBusiness"],
-    "name": BUSINESS.name,
-    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
-    "description": BUSINESS.description,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": BUSINESS.address.street,
-      "addressLocality": BUSINESS.address.area,
-      "addressRegion": BUSINESS.address.city,
-      "addressCountry": "NG"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 6.6194,
-      "longitude": 3.3768
-    },
-    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://pradosrestaurant.com",
-    "telephone": BUSINESS.contact.phoneE164,
-    "servesCuisine": ["Nigerian", "Contemporary African", "Grills", "Cocktails"],
-    "priceRange": "₦₦₦",
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "12:00",
-        "closes": "23:00"
+        "@type": ["Restaurant", "BarOrPub", "LocalBusiness"],
+        "@id": `${siteUrl}/#restaurant`,
+        "name": BUSINESS.name,
+        "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
+        "description": BUSINESS.description,
+        "url": siteUrl,
+        "telephone": BUSINESS.contact.phoneE164,
+        "priceRange": "₦₦₦",
+        "servesCuisine": [
+          "Contemporary Nigerian",
+          "Nigerian",
+          "African",
+          "Charcoal Grills",
+          "Cocktails",
+          "Wine Bar"
+        ],
+        "acceptsReservations": "True",
+        "menu": `${siteUrl}/menu`,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": BUSINESS.address.street,
+          "addressLocality": BUSINESS.address.area,
+          "addressRegion": BUSINESS.address.city,
+          "postalCode": BUSINESS.address.postalCode,
+          "addressCountry": "NG"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 6.6194,
+          "longitude": 3.3768
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "12:00",
+            "closes": "23:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "12:00",
+            "closes": "23:59"
+          }
+        ],
+        "hasMap": BUSINESS.maps.googleMapsUrl,
+        "sameAs": [
+          BUSINESS.social.instagram,
+          BUSINESS.social.facebook,
+          BUSINESS.social.twitter
+        ].filter(Boolean)
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "12:00",
-        "closes": "00:00"
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        "url": siteUrl,
+        "name": BUSINESS.name,
+        "description": BUSINESS.description,
+        "publisher": {
+          "@id": `${siteUrl}/#restaurant`
+        }
       }
-    ],
-    "acceptsReservations": "True"
+    ]
   };
 
   return (
@@ -55,7 +97,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <h1 className="sr-only">Prados Restaurant & Bar - Premium Dining & Lounge in Magodo Phase 2, Lagos</h1>
+      
+      {/* Page Sections */}
       <HeroSection />
       <IntroSection />
       <MenuPreviewSection />

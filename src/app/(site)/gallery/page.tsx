@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import GalleryClient from "@/components/gallery/GalleryClient";
 
 export const metadata: Metadata = {
-  title: "Photo Gallery | Prados Restaurant & Bar Magodo Lagos",
+  title: "Atmosphere & Dining Photo Gallery | Prados Restaurant & Bar",
   description:
-    "View photographs of Prados Restaurant & Bar: refined interior dining spaces, craft cocktails, gourmet Nigerian dishes, and vibrant night atmosphere in Magodo Phase 2.",
+    "Explore the visual journey of Prados Restaurant & Bar: contemporary dining rooms, ambient lighting, signature cocktails, and vibrant events in Magodo Phase 2, Lagos.",
+  alternates: {
+    canonical: "/gallery",
+  },
 };
 
 export default function GalleryPage() {
